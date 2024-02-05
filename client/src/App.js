@@ -6,7 +6,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Welcome to Routine Management System
+        Welcome to Routine Management System.
+        this is puja and sheels,
       </header>
     </div>
   );
