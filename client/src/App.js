@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
        Welcome to Routine Management System
-       This is puja and sheela team.
+       This is puja and sheela teammates....
       </header>
     </div>
   );
