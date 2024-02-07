@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
     },
     pincode: {
       type: Number,
-      default: 12345,
+      default: 123456,
     },
   },
   {
