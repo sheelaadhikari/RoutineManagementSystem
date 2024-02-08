@@ -3,6 +3,7 @@ import {
   loginController,
   registerController,
 } from "../controllers/authController.js";
+
 const router = express.Router();
 
 //routing
