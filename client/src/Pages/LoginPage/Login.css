@@ -5,10 +5,25 @@
 .inputbox input{
     background-color: transparent;
 }
-.inputbox input:focus ~ span{
+/* .inputbox input:focus ~ span{
     transform: translateX(5px) translateY(-10px);
     padding: 0px 10px;
-    /* background-color: white; */
+    transition: 0.5s;
+} */
+
+.inputbox input::placeholder {
+    color: transparent;
+}
+.inputbox input:focus ~ span,
+.inputbox input:not(:placeholder-shown) ~ span {
+    transform: translateX(1px) translateY(-18px);
+    padding: 0px 10px;
+    transition: 0.5s;
+}
+
+.inputbox input:not(:focus):placeholder-shown ~ span {
+    transform: translateX(0) translateY(0);
+    padding: 0;
     transition: 0.5s;
 }
 .inputbox input:focus ~ img{

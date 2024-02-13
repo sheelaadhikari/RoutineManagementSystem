@@ -3,6 +3,7 @@ import './Login.css';
 import keyImage from '../../images/key.png'; // Adjust the path based on your directory structure
 import userImage from '../../images/user.png'
 import LockIcon from '@mui/icons-material/Lock';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -15,24 +16,30 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(credential);
+        axios.post('https://jsonplaceholder.typicode.com/users', credential)
+        .then(resp => {setCredential(resp.data);
+          console.log(resp.data);
+        })
+        .catch(err => {console.error(err);
+        });
     }
     return (
         <div className='login w-full md:w-screen h-screen flex items-center justify-center bg-custom-blue-400 '>
         <div className="wrapper flex flex-col md:flex-row rounded-xl border border-blue-700 w-full md:w-[80%] lg:w-[60%] xl:w-[50%] mx-4 md:mx-0 ">
-          <div className="left m-6 mb-14 p-2 md:w-2/3">
+          <div className="left m-6 mb-14 p-4 md:w-2/3">
             <div className="form">
-              <form onSubmit={handleSubmit} className='flex flex-col mt-4 space-y-14 font-bold relative text-xs md:text-base'>
+              <form onSubmit={handleSubmit} className='flex flex-col mt-4 space-y-16 font-bold relative text-xs md:text-base'>
       
                 <div className="inputbox relative">
-                  <input type='text' name="username" onChange={handleChange} className='p-4 border-b border-blue-700 w-full focus:border-blue-700 outline-none' />
-                  <span className='absolute left-0 py-4 px-2'>Username</span>
-                  <img src={userImage} className='w-4 absolute right-7 top-5'/>
+                  <input type='text' name="username" onChange={handleChange} className='p-1 border-b border-blue-700 w-full focus:border-blue-700 outline-none' placeholder='username'/>
+                  <span className='absolute left-0 px-2'>Username</span>
+                  <img src={userImage} className='w-4 absolute right-7 top-1'/>
                 </div>
       
                 <div className="inputbox relative">
-                  <input type='password' name="password" onChange={handleChange} className='p-4 border-b border-blue-700 w-full focus:border-blue-700 outline-none' />
+                  <input type='password' name="password" onChange={handleChange} className='p-1 border-b border-blue-700 w-full focus:border-blue-700 outline-none' placeholder='password'/>
                   <span className='absolute left-0 py-4 px-2'>Password</span>
-                  <img src={keyImage} className='w-5 absolute right-7 top-5 bg-transparent'/>
+                  <img src={keyImage} className='w-5 absolute right-7 top-1 bg-transparent'/>
                 </div>
       
                 <button className='bg-custom-blue-300 text-black font-bold p-2 w-[82%] m-auto rounded-2xl'>LOGIN</button>
@@ -50,9 +57,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-
-    
-      
     )
 }
 
