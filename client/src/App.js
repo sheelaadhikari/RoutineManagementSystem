@@ -1,17 +1,17 @@
-/* eslint-disable no-unused-vars */
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Login from "./Pages/auth/Login.js";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        Welcome to Routine Management System.
-        this is puja and sheels,
-        We will make it top ..
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<Login />}>
+          {" "}
+        </Route>
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
