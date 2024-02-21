@@ -6,9 +6,7 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Login />}>
-          {" "}
-        </Route>
+        <Route path="/" element={<Login />}></Route>
       </Routes>
     </div>
   );
