@@ -1,0 +1,59 @@
+.wrapper {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255, 0.4) 40%,
+    rgb(255, 253, 253, 0.5) 100%
+  );
+}
+.inputbox input {
+  background-color: transparent;
+}
+/* .inputbox input:focus ~ span{
+    transform: translateX(5px) translateY(-10px);
+    padding: 0px 10px;
+    transition: 0.5s;
+} */
+
+.inputbox input::placeholder {
+  color: transparent;
+}
+.inputbox input:focus ~ span,
+.inputbox input:not(:placeholder-shown) ~ span {
+  transform: translateX(1px) translateY(-18px);
+  padding: 0px 10px;
+  transition: 0.5s;
+}
+
+.inputbox input:not(:focus):placeholder-shown ~ span {
+  transform: translateX(0) translateY(0);
+  padding: 0;
+  transition: 0.5s;
+}
+.inputbox input:focus ~ img {
+  transform: translateX(20px);
+  transition: 0.5s;
+}
+.form button {
+  font-family: "Inknut Antiqua";
+}
+.right .title {
+  font-family: "Inknut Antiqua";
+}
+.right .eclipse {
+  background-image: radial-gradient(
+    circle,
+    rgb(152, 241, 253, 0.9),
+    rgb(108, 177, 241, 0) 70%
+  );
+}
+.right .ecli {
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(115, 166, 225, 1)
+  );
+}
+.ecli .lockicon {
+  font-size: 6rem;
+}
