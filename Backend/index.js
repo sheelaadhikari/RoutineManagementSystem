@@ -31,4 +31,6 @@ app.listen(PORT, () => {
     `server is running on ${process.env.DEV_MODE} mode on port ${PORT}`.bgCyan
       .bgBrightCyan
   );
+
+  console.log("hello world");
 });
