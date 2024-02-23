@@ -3,6 +3,14 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import color from "@colors/colors";
 import authRoutes from "./routes/authRoutes.js";
+import morgan from "morgan";
+import cors from "cors";
+
+const corsOptions = {
+  origin: "http://localhost:5173",
+  method: "GET, POST, PUT, DELETE, PATHCH, HEAD",
+  credentials: true,
+};
 
 //configure env
 dotenv.config();
@@ -14,7 +22,10 @@ connectDB();
 const app = express();
 
 // middlewares
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(morgan("dev"));
+
 // routes
 app.use("/api/v1/auth", authRoutes);
 
