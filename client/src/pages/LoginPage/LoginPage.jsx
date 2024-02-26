@@ -6,31 +6,30 @@ import userImage from "../../images/user.png";
 import LockIcon from "@mui/icons-material/Lock";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useLocation, useNavigate } from 'react-router-dom';
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate= useNavigate();
-  const location= useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      
-      const res = await axios.post("http://localhost:8001/api/v1/auth/login", { email, password });
+      const res = await axios.post("http://localhost:8001/api/v1/auth/login", {
+        email,
+        password,
+      });
       if (res.data.success) {
         toast.success(res.data.message);
-       
 
         localStorage.setItem("auth", JSON.stringify(res.data));
         axios.defaults.headers.common["Authorization"] = res.data.token;
-        navigate(location.state|| "/homepage ")
+        navigate(location.state || "/homepage ");
       } else {
         toast.error(res.data.message);
-        
       }
     } catch (error) {
       console.log(error);
@@ -50,9 +49,10 @@ const Login = () => {
                 <input
                   type="text"
                   value={email}
-                  onChange={(e) => {  
+                  onChange={(e) => {
                     setEmail(e.target.value);
-                  }}                  className="p-1 border-b border-blue-700 w-full focus:border-blue-700 outline-none"
+                  }}
+                  className="p-1 border-b border-blue-700 w-full focus:border-blue-700 outline-none"
                   placeholder=""
                 />
                 <span className="absolute left-0 px-2">Username</span>
@@ -75,12 +75,25 @@ const Login = () => {
                   className="w-5 absolute right-7 top-1 bg-transparent"
                 />
               </div>
+              <div className=""></div>
 
-              <button type="submit"  className="bg-custom-blue-300 text-black font-bold p-2 w-[82%] m-auto rounded-2xl">
+              <button
+                type="submit"
+                className="bg-custom-blue-300 text-black font-bold p-2 w-[82%] m-auto rounded-2xl"
+              >
                 LOGIN
               </button>
             </form>
           </div>
+          <p
+            type="button"
+            className=""
+            onClick={() => {
+              navigate("/forgot-password");
+            }}
+          >
+            Forgot Password?
+          </p>
         </div>
 
         <div className="right bg-custom-blue-300 border border-custom-blue-400 rounded-xl md:w-1/3 flex flex-col justify-center items-center space-y-12 p-5 text-xs md:text-base">
