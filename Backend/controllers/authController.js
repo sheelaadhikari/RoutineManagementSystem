@@ -8,6 +8,7 @@ export const registerController = async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const phone = req.body.phone;
+    const pincode = req.body.pincode;
 
     //validation
     if (!username) {
@@ -21,6 +22,9 @@ export const registerController = async (req, res) => {
     }
     if (!phone) {
       return res.send({ message: "Phone Number is required" });
+    }
+    if (!pincode) {
+      return res.send({ message: "Pincode Number is required" });
     }
 
     //check user
@@ -44,6 +48,7 @@ export const registerController = async (req, res) => {
       email: email,
       password: hashedPassword,
       phone: phone,
+      pincode: pincode,
     });
     const savedUser = await users.save();
     res.status(201).send({
@@ -111,6 +116,53 @@ export const loginController = async (req, res) => {
     res.status(500).send({
       sucess: false,
       message: "error in Login",
+      error,
+    });
+  }
+};
+
+// fortgot password controller
+export const forgotPasswordController = async (req, res) => {
+  try {
+    const { email, pincode, newPassword } = req.body;
+    if (!email) {
+      res.status(400).send({
+        message: "Email is required",
+      });
+    }
+    if (!pincode) {
+      res.status(400).send({
+        message: "Pincode is required",
+      });
+    }
+    if (!newPassword) {
+      res.status(400).send({
+        message: "New Password is required",
+      });
+    }
+
+    // check user
+    const user = await userModel.findOne({ email, pincode });
+    // validation
+    if (!user) {
+      return res.status(400).send({
+        success: false,
+        message: "wrong email or pincode",
+      });
+    }
+
+    const hashed = await hashPassword(newPassword);
+    await userModel.findByIdAndUpdate(user._id, { password: hashed });
+    res.status(200).send({
+      success: true,
+      message: "password reset successfully",
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).send({
+      success: false,
+      message: "something went wrong",
       error,
     });
   }
