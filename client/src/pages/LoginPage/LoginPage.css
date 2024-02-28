@@ -1,9 +1,18 @@
-ox input:focus ~ span {
-  transform: translateX(5px) translateY(-10px);
-  padding: 0px 10px;
-  transition: 0.5s;
+.wrapper {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255, 0.4) 40%,
+    rgb(255, 253, 253, 0.5) 100%
+  );
 }
-*/ .inputbox input::placeholder {
+.inputbox input {
+  background-color: transparent;
+}
+.inputbox span {
+  font-family: "Inknut Antiqua";
+}
+.inputbox input::placeholder {
   color: transparent;
 }
 .inputbox input:focus ~ span,
@@ -27,6 +36,7 @@ ox input:focus ~ span {
 }
 .right .title {
   font-family: "Inknut Antiqua";
+  font-size: 1.5rem;
 }
 .right .eclipse {
   background-image: radial-gradient(
@@ -44,4 +54,7 @@ ox input:focus ~ span {
 }
 .ecli .lockicon {
   font-size: 6rem;
+}
+.forgot {
+  font-family: "Inknut Antiqua";
 }
