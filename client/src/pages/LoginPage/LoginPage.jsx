@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import "../LoginPage/LoginPage.css";
+import '../LoginPage/LoginPage.css'
 import keyImage from "../../images/key.png"; // Adjust the path based on your directory structure
 import userImage from "../../images/user.png";
 import LockIcon from "@mui/icons-material/Lock";
@@ -53,7 +53,7 @@ const Login = () => {
                     setEmail(e.target.value);
                   }}
                   className="p-1 border-b border-blue-700 w-full focus:border-blue-700 outline-none"
-                  placeholder=""
+
                 />
                 <span className="absolute left-0 px-2">Username</span>
                 <img src={userImage} className="w-4 absolute right-7 top-1" />
@@ -79,7 +79,7 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="bg-custom-blue-300 text-black font-bold p-2 w-[82%] m-auto rounded-2xl"
+                className="bg-[#A8AFF7] text-black font-bold p-2 w-[82%] m-auto rounded-2xl"
               >
                 LOGIN
               </button>
@@ -87,7 +87,7 @@ const Login = () => {
           </div>
           <p
             type="button"
-            className=""
+            className=" cursor-pointer"
             onClick={() => {
               navigate("/forgot-password");
             }}
