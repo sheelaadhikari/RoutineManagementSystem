@@ -6,17 +6,14 @@ const bcafSchema = new mongoose.Schema(
       required: true,
     },
     semester: {
-      type: Number,
+      type: String,
       required: true,
     },
     time: {
       type: String,
       required: true,
     },
-    slug: {
-      type: String,
-      required: true,
-    },
+
     subject: {
       type: String,
       required: true,
