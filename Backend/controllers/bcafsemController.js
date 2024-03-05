@@ -1,52 +1,60 @@
-// creating routine of first semester BCA
+import BcaFirstModel from "../models/bcafModel.js";
 
-import bcafModel from "../models/bcafModel.js";
 export const bcafcrController = async (req, res) => {
   try {
-    const programname = req.body.programname;
-    const semester = req.body.semester;
-    const time = req.body.time;
-    const subject = req.body.subject;
-    const teacher = req.body.teacher;
-    const day = req.body.day;
-    //validation
-    if (!programname) {
-      return res.send({ message: "programname is required" });
+    const routines = req.body;
+
+    // Validate if routines array is present
+    if (!Array.isArray(routines) || routines.length === 0) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid data format" });
     }
-    if (!semester) {
-      return res.send({ message: "semester is required" });
+
+    // Iterate through each routine in the array
+    for (const routine of routines) {
+      const { programname, semester, periods, day } = routine;
+
+      // Validation for each routine
+      if (!programname || !semester || !periods || !day) {
+        return res.status(400).json({
+          success: false,
+          message: "All fields are required for each routine.",
+        });
+      }
+
+      // Validate each period in the 'periods' array
+      for (const period of periods) {
+        const { time, subject, teacher } = period;
+        if (!time || !subject || !teacher) {
+          return res.status(400).json({
+            success: false,
+            message: "Each period must have 'time', 'subject', and 'teacher'.",
+          });
+        }
+      }
+
+      // Create a new document using the BcaFirstModel
+      const bcaFirstRoutine = new BcaFirstModel({
+        programname,
+        semester,
+        periods,
+        day,
+      });
+
+      // Save the document to the database
+      await bcaFirstRoutine.save();
     }
-    if (!time) {
-      return res.send({ message: "time is required" });
-    }
-    if (!subject) {
-      return res.send({ message: "subject is required" });
-    }
-    if (!teacher) {
-      return res.send({ message: "teacher is required" });
-    }
-    if (!day) {
-      return res.send({ message: "day is required" });
-    }
-    const bcafroutine = new bcafModel({
-      programname: programname,
-      semester: semester,
-      time: time,
-      subject: subject,
-      teacher: teacher,
-      day: day,
-    });
-    await bcafroutine.save();
-    res.status(201).send({
+
+    res.status(201).json({
       success: true,
-      message: "Routine of BCA first semester created successfully",
-      bcafroutine,
+      message: "Routines of BCA first semester created successfully",
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
+    console.error(error);
+    res.status(500).json({
       success: false,
-      message: "somthing went wrong",
+      message: "Something went wrong",
       error,
     });
   }
