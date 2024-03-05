@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 
-
-const Header = () => {
+const Dashboard = () => {
   return (
-    <div>Header</div>
+    <div>Dashboard</div>
   )
 }
 
-export default Header
+export default Dashboard

@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import color from "@colors/colors";
 import authRoutes from "./routes/authRoutes.js";
+import bcaRoutes from "./routes/bcaRoutes.js";
 import morgan from "morgan";
 import cors from "cors";
 
@@ -28,7 +29,7 @@ app.use(morgan("dev"));
 
 // routes
 app.use("/api/v1/auth", authRoutes);
-
+app.use("/api/v1/bca", bcaRoutes);
 //rest api (testing)
 app.get("/", (req, res) => {
   res.send("<h1>welcome to this project</h1>");
@@ -42,6 +43,4 @@ app.listen(PORT, () => {
     `server is running on ${process.env.DEV_MODE} mode on port ${PORT}`.bgCyan
       .bgBrightCyan
   );
-
-  console.log("hello world");
 });
