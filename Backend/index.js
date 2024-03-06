@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import color from "@colors/colors";
 import authRoutes from "./routes/authRoutes.js";
-import bcaRoutes from "./routes/bcaRoutes.js";
+import bcaRoutes from "./routes/bcaroutes/bcaRoutes.js";
 import morgan from "morgan";
 import cors from "cors";
 

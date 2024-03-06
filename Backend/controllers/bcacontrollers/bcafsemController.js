@@ -1,5 +1,5 @@
-import bcafModel from "../models/bcafModel.js";
-import BcaFirstModel from "../models/bcafModel.js";
+import bcafModel from "../../models/bcamodels/bcafModel.js";
+import BcaFirstModel from "../../models/bcamodels/bcafModel.js";
 
 export const bcafcrController = async (req, res) => {
   try {

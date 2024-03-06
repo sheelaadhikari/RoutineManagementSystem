@@ -1,12 +1,15 @@
 import express from "express";
-import { isSuperAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
+import {
+  isSuperAdmin,
+  requireSignIn,
+} from "../../middlewares/authMiddleware.js";
 import {
   bcafcrController,
   deletebcafrController,
   getSinglebcafrController,
   getbcafrController,
   updatebcafrController,
-} from "../controllers/bcafsemController.js";
+} from "../../controllers/bcacontrollers/bcafsemController.js";
 const router = express.Router();
 
 //creating  bca first semester routine routes
