@@ -1,10 +1,11 @@
 import express from "express";
 import { isSuperAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
-import formidable from "express-formidable";
 import {
   bcafcrController,
+  deletebcafrController,
   getSinglebcafrController,
   getbcafrController,
+  updatebcafrController,
 } from "../controllers/bcafsemController.js";
 const router = express.Router();
 
@@ -22,4 +23,10 @@ router.get("/get-bcafroutine", getbcafrController);
 
 // get single day routine of first sem bca
 router.get("/get-singledr/:day", getSinglebcafrController);
+
+// delete all routine of first sem bca
+router.delete("/delete-bcafroutine", deletebcafrController);
+
+// update all routine of first sem bca
+router.put("/update-bcafroutine", updatebcafrController);
 export default router;
