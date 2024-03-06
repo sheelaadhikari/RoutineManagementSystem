@@ -1,3 +1,4 @@
+import bcafModel from "../models/bcafModel.js";
 import BcaFirstModel from "../models/bcafModel.js";
 
 export const bcafcrController = async (req, res) => {
@@ -55,6 +56,72 @@ export const bcafcrController = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Something went wrong",
+      error,
+    });
+  }
+};
+
+// bca first semester
+// getting all routines
+export const getbcafrController = async (req, res) => {
+  try {
+    const bcafroutine = await bcafModel
+      .find({})
+      .populate({
+        path: "periods.subject",
+        select: "time period subject teacher _id",
+      })
+      .select("programname semester day periods createdAt updatedAt __v")
+      .limit(12)
+      .sort({ createdAt: -1 });
+
+    res.status(200).send({
+      countTotal: bcafroutine.length,
+      success: true,
+      message: "all routine",
+      bcafroutine,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "something went wrong",
+      error: error.message,
+    });
+  }
+};
+
+//bca first semester
+// get single day routine
+export const getSinglebcafrController = async (req, res) => {
+  try {
+    const day = req.params.day;
+    const bcafsr = await bcafModel
+      .findOne({ day })
+      .select("programname semester day periods createdAt updatedAt __v")
+      .populate({
+        path: "periods.subject",
+        select: "time period subject teacher _id",
+      });
+
+    if (bcafsr) {
+      res.status(200).send({
+        success: true,
+        message: ` routine for ${day}`,
+        bcafsr,
+      });
+    } else {
+      return res.status(404).send({
+        success: false,
+        message: ` routine for ${day} not found`,
+        bcafsr: null,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting single day routine",
       error,
     });
   }
