@@ -4,10 +4,10 @@ import {
   requireSignIn,
 } from "../../middlewares/authMiddleware.js";
 import {
-  bcafcrController,
+  createBcafController,
   deletebcafrController,
-  getSinglebcafrController,
-  getbcafrController,
+  getAllBcafController,
+  getRoutineByDayController,
   updatebcafrController,
 } from "../../controllers/bcacontrollers/bcafsemController.js";
 const router = express.Router();
@@ -18,18 +18,23 @@ router.post(
   "/create-bcafroutine",
   requireSignIn,
   isSuperAdmin,
-  bcafcrController
+  createBcafController
 );
 
-// get all routine of first sem bca
-router.get("/get-bcafroutine", getbcafrController);
+// // get all routine of first sem bca
+router.get("/get-bcafroutine", getAllBcafController);
 
-// get single day routine of first sem bca
-router.get("/get-singledr/:day", getSinglebcafrController);
+// // get single day routine of first sem bca
+router.get("/get-singledr/:day", getRoutineByDayController);
 
-// delete all routine of first sem bca
+// // delete all routine of first sem bca
 router.delete("/delete-bcafroutine", deletebcafrController);
 
-// update all routine of first sem bca
-router.put("/update-bcafroutine", updatebcafrController);
+// // update all routine of first sem bca
+router.put(
+  "/update-bcafroutine",
+  requireSignIn,
+  isSuperAdmin,
+  updatebcafrController
+);
 export default router;

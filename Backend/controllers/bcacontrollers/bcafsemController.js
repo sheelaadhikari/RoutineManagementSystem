@@ -1,134 +1,99 @@
 import bcafModel from "../../models/bcamodels/bcafModel.js";
-import BcaFirstModel from "../../models/bcamodels/bcafModel.js";
 
-export const bcafcrController = async (req, res) => {
+export const createBcafController = async (req, res) => {
   try {
-    const routines = req.body;
+    const routinesData = req.body;
 
-    // Validate if routines array is present
-    if (!Array.isArray(routines) || routines.length === 0) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid data format" });
-    }
+    // Validate input data
+    for (const routineData of routinesData) {
+      const { userID, programname, semester, day, periods } = routineData;
 
-    // Iterate through each routine in the array
-    for (const routine of routines) {
-      const { programname, semester, periods, day } = routine;
-
-      // Validation for each routine
-      if (!programname || !semester || !periods || !day) {
+      if (
+        !userID ||
+        !programname ||
+        !semester ||
+        !day ||
+        !periods ||
+        periods.length === 0
+      ) {
         return res.status(400).json({
-          success: false,
-          message: "All fields are required for each routine.",
+          error: "All fields are required, and periods array must not be empty",
         });
       }
 
-      // Validate each period in the 'periods' array
+      // Validate each period
       for (const period of periods) {
-        const { time, subject, teacher } = period;
-        if (!time || !subject || !teacher) {
-          return res.status(400).json({
-            success: false,
-            message: "Each period must have 'time', 'subject', and 'teacher'.",
-          });
+        const { startTime, endTime, subject, teacher } = period;
+
+        if (!startTime || !endTime || !subject || !teacher) {
+          return res
+            .status(400)
+            .json({ error: "All fields in each period are required" });
         }
       }
 
-      // Create a new document using the BcaFirstModel
-      const bcaFirstRoutine = new BcaFirstModel({
+      // Create a new Bcafsem document for each routine
+      const bcafSemester = new bcafModel({
+        userID,
         programname,
         semester,
-        periods,
         day,
+        periods,
       });
 
       // Save the document to the database
-      await bcaFirstRoutine.save();
+      await bcafSemester.save();
     }
 
-    res.status(201).json({
-      success: true,
-      message: "Routines of BCA first semester created successfully",
-    });
+    res.status(201).json({ message: "Routines created successfully" });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: "Something went wrong",
-      error,
-    });
+    res.status(400).json({ error: error.message });
   }
 };
 
-// bca first semester
-// getting all routines
-export const getbcafrController = async (req, res) => {
-  try {
-    const bcafroutine = await bcafModel
-      .find({})
-      .populate({
-        path: "periods.subject",
-        select: "time period subject teacher _id",
-      })
-      .select("programname semester day periods createdAt updatedAt __v")
-      .limit(12)
-      .sort({ createdAt: -1 });
+// // bca first semester
+// // getting all routines
 
-    res.status(200).send({
-      countTotal: bcafroutine.length,
-      success: true,
-      message: "all routine",
-      bcafroutine,
-    });
+export const getAllBcafController = async (req, res) => {
+  try {
+    // Fetch all routines from the database
+    const routines = await bcafModel.find();
+
+    res.status(200).json(routines);
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "something went wrong",
-      error: error.message,
-    });
+    res.status(500).json({ error: error.message });
   }
 };
 
-//bca first semester
-// get single day routine
-export const getSinglebcafrController = async (req, res) => {
+// //bca first semester
+// // get single day routine
+export const getRoutineByDayController = async (req, res) => {
   try {
-    const day = req.params.day;
-    const bcafsr = await bcafModel
-      .findOne({ day })
-      .select("programname semester day periods createdAt updatedAt __v")
-      .populate({
-        path: "periods.subject",
-        select: "time period subject teacher _id",
-      });
+    const singleroutine = await bcafModel
+      .findOne({ day: req.params.day })
+      .select("periods")
+      .populate("day");
 
-    if (bcafsr) {
+    if (singleroutine) {
       res.status(200).send({
         success: true,
-        message: ` routine for ${day}`,
-        bcafsr,
+        message: "singleday routine fetched",
+        singleroutine,
       });
     } else {
-      return res.status(404).send({
+      res.status(404).send({
         success: false,
-        message: ` routine for ${day} not found`,
-        bcafsr: null,
+        message: "routine",
+        teacher,
       });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Error while getting single day routine",
-      error,
-    });
+    res.status(500).json({ error: error.message });
   }
 };
 
-//bca first semester
-// delete  all the routine of bca first semester
+// //bca first semester
+// // delete  all the routine of bca first semester
 export const deletebcafrController = async (req, res) => {
   try {
     const semesterToDelete = "1";
@@ -149,64 +114,56 @@ export const deletebcafrController = async (req, res) => {
   }
 };
 
-// bca first sem
-// update the routine
+// // bca first sem
+// // update the routine
 export const updatebcafrController = async (req, res) => {
   try {
-    const routines = req.body;
+    const routinesData = req.body;
 
-    // Validate if routines array is present
-    if (!Array.isArray(routines) || routines.length === 0) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid data format" });
-    }
+    // Validate input data
+    for (const routineData of routinesData) {
+      const { userID, programname, semester, day, periods } = routineData;
 
-    // Iterate through each routine in the array
-    for (const routine of routines) {
-      const { programname, semester, periods, day } = routine;
-
-      // Validation for each routine
-      if (!programname || !semester || !periods || !day) {
+      if (
+        !userID ||
+        !programname ||
+        !semester ||
+        !day ||
+        !periods ||
+        periods.length === 0
+      ) {
         return res.status(400).json({
-          success: false,
-          message: "All fields are required for each routine.",
+          error: "All fields are required, and periods array must not be empty",
         });
       }
 
-      // Validate each period in the 'periods' array
+      // Validate each period
       for (const period of periods) {
-        const { time, subject, teacher } = period;
-        if (!time || !subject || !teacher) {
-          return res.status(400).json({
-            success: false,
-            message: "Each period must have 'time', 'subject', and 'teacher'.",
-          });
+        const { startTime, endTime, subject, teacher } = period;
+
+        if (!startTime || !endTime || !subject || !teacher) {
+          return res
+            .status(400)
+            .json({ error: "All fields in each period are required" });
         }
       }
 
-      // Delete existing routine for the specified day
-      await BcaFirstModel.deleteOne({ day: day });
-
-      // Create a new document using the BcaFirstModel
-      const bcaFirstRoutine = new BcaFirstModel({
-        programname,
-        semester,
-        periods,
-        day,
-      });
-
-      // Save the document to the database
-      await bcaFirstRoutine.save();
+      // Find the routine by userID and day
+      const existingRoutine = await bcafModel.findOneAndUpdate(
+        { userID, day },
+        { ...routineData },
+        { new: true, upsert: true }
+      );
     }
 
-    res.status(201).json({
+    // Send a single response after all routines have been updated
+    res.status(200).send({
       success: true,
-      message: "Routines of BCA first semester updated successfully",
+      message: "Routines updated successfully",
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({
+    console.log(error);
+    res.status(500).send({
       success: false,
       message: "Something went wrong",
       error,
