@@ -1,11 +1,20 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React from "react";
+import {
+  BsFillBellFill,
+  BsFillEnvelopeFill,
+  BsPersonCircle,
+  BsSearch,
+  BsJustify,
+} from "react-icons/bs";
 
-
-const Header = () => {
+function Header() {
   return (
-    <div>Header</div>
-  )
+    <div className="header">
+     
+    </div>
+  );
 }
 
-export default Header
+export default Header;

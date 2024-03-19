@@ -28,7 +28,7 @@ const Login = () => {
 
         localStorage.setItem("auth", JSON.stringify(res.data));
         axios.defaults.headers.common["Authorization"] = res.data.token;
-        navigate(location.state || "/homepage ");
+        navigate(location.state || "/dashboard ");
       } else {
         toast.error(res.data.message);
       }
