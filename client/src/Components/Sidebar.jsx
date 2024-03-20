@@ -1,13 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import 
-{ BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, 
-  BsListCheck, BsMenuButtonWideFill, BsFillGearFill}
- from 'react-icons/bs'
+
  import { AiFillSchedule } from "react-icons/ai";
  import { GoHome } from "react-icons/go";
  import { FaRegUser } from "react-icons/fa";
  import { IoMdAdd } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 
 
@@ -27,20 +25,28 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
         <ul className='sidebar-list'>
            
             <li className='sidebar-list-item'>
-                <a href="/dashboard">
-                    <GoHome className='icon'/> Home
-                </a>
+               
+                    <GoHome/> 
+                    <Link to='/home'>Home</Link>
+
+               
             </li>
             <li className='sidebar-list-item'>
-                <a href="">
-                    <FaRegUser className='icon'/> Admin
-                </a>
+               
+                    <FaRegUser/> 
+                    <Link to='/admin'>Admin</Link>
+
+                
             </li>
             
             <li className='sidebar-list-item'>
-                <a href="">
-                    <IoMdAdd className='icon'/> Add Routine
-                </a>
+              
+                 
+                    <IoMdAdd />
+                    <Link to='/crud-bcaf'>Add Routine</Link>
+
+                
+               
             </li>
            
            
