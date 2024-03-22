@@ -3,9 +3,9 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/LoginPage/LoginPage";
 import ForgotPassword from "./pages/LoginPage/ForgotPassword";
-import Dashboard from "./pages/Dashboard";
-import UpcomingClasses from "./pages/UpcomingClasses";
-import TodaysClasses from "./pages/TodaysClasses";
+import UpcomingClasses from "./Components/UpcomingClasses";
+import TodaysClasses from "./Components/TodaysClasses";
+import Dashboard from "./pages/DashboardPage/Dashboard";
 
 const App = () => {
   return (

@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
+    "@ant-design/icons": "^5.3.4",
+    "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.15.10",
-    "@mui/material": "^5.15.10",
+    "@mui/icons-material": "^5.15.14",
+    "@mui/material": "^5.15.14",
+    "antd": "^5.15.3",
     "axios": "^1.6.7",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
