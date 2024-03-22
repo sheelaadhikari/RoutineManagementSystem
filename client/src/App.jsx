@@ -5,7 +5,7 @@ import Login from "./pages/LoginPage/LoginPage";
 import ForgotPassword from "./pages/LoginPage/ForgotPassword";
 import UpcomingClasses from "./Components/UpcomingClasses";
 import TodaysClasses from "./Components/TodaysClasses";
-import Dashboard from "./pages/DashboardPage/Dashboard";
+import Dashboard from "./pages/DashPage/Dashboard";
 
 const App = () => {
   return (
