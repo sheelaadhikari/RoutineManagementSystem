@@ -27,7 +27,7 @@ const TodaysClasses = () => {
 
   return (
     <div className='table-one'>
-      <h2>{loading ? "Loading..." : "All Routines of today"}</h2>
+      {/* <h2>{loading ? "Loading..." : "All Routines of today"}</h2>
       <table border="1">
         <thead>
           <tr>
@@ -54,7 +54,9 @@ const TodaysClasses = () => {
   ))}
 </tbody>
 
-      </table>
+      </table> */}
+          List of todays classes
+
     </div>
   );
 };

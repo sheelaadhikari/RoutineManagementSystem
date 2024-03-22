@@ -26,7 +26,8 @@ const UpcomingClasses = () => {
       }, []);
     
       return (
-        <div className='table-one'>
+       <div className="div ">
+         {/* <div className='table-one'>
           <h2>{loading ? "Loading..." : "All Routines"}</h2>
           <table border="1">
             <thead>
@@ -58,7 +59,10 @@ const UpcomingClasses = () => {
               ))}
             </tbody>
           </table>
-        </div>
+        </div> */}
+          List of upcoming classes
+
+       </div>
       );
     };
 
