@@ -4,6 +4,8 @@ import connectDB from "./config/db.js";
 import color from "@colors/colors";
 import authRoutes from "./routes/authRoutes.js";
 import bcaRoutes from "./routes/bcaroutes/bcaRoutes.js";
+import bcasRoutes from "./routes/bcaroutes/bcasRoutes.js";
+
 import morgan from "morgan";
 import cors from "cors";
 
@@ -29,7 +31,11 @@ app.use(morgan("dev"));
 
 // routes
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/bca", bcaRoutes);
+
+//routes for bca faculty
+app.use("/api/v1/bca", bcaRoutes); // first semester
+app.use("/api/v1/bcas", bcasRoutes); //second semester
+
 //rest api (testing)
 app.get("/", (req, res) => {
   res.send("<h1>welcome to this project</h1>");
