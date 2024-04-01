@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 
-export const Footer = () => {
+const Dashboard = () => {
   return (
-    <div>Footer</div>
+    <div>Dashboard</div>
   )
 }
-export default Footer;
+
+export default Dashboard

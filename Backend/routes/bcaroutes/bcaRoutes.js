@@ -22,13 +22,28 @@ router.post(
 );
 
 // // get all routine of first sem bca
-router.get("/get-bcafroutine", getAllBcafController);
+router.get(
+  "/get-bcafroutine",
+  requireSignIn,
+  isSuperAdmin,
+  getAllBcafController
+);
 
 // // get single day routine of first sem bca
-router.get("/get-singledr/:day", getRoutineByDayController);
+router.get(
+  "/get-singledr/:day",
+  requireSignIn,
+  isSuperAdmin,
+  getRoutineByDayController
+);
 
 // // delete all routine of first sem bca
-router.delete("/delete-bcafroutine", deletebcafrController);
+router.delete(
+  "/delete-bcafroutine",
+  requireSignIn,
+  isSuperAdmin,
+  deletebcafrController
+);
 
 // // update all routine of first sem bca
 router.put(

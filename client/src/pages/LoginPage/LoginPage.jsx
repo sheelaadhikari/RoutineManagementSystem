@@ -78,8 +78,7 @@ const Login = () => {
               </div>
               <div className="btn space-y-7">
               <div className="forgot flex justify-end ">
-                <Link to='/forgot-password'>Forgot Password?</Link>
-              </div>
+                  </div>
                 <div className="flex justify-center">
                 <button
                 type="submit"

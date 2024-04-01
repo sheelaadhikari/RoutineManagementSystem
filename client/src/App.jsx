@@ -1,30 +1,25 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/LoginPage/LoginPage";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+
+import "react-toastify/dist/ReactToastify.css";
+
+
+
 import ForgotPassword from "./pages/LoginPage/ForgotPassword";
-import Dashboard from "./pages/Dashboard";
-import UpcomingClasses from "./pages/UpcomingClasses";
-import TodaysClasses from "./pages/TodaysClasses";
+import Login from "./pages/LoginPage/LoginPage";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
-const App = () => {
-  return (
-    <div>
-      <BrowserRouter>
+function App() {
+return(
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login/>}></Route>
+        <Route path="/" element={<Login />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/upcoming-classes" element={<UpcomingClasses />} />
-        <Route path="/todays-classes" element={<TodaysClasses />} />
-
-
-        <Route path="/forgot-password" element={<ForgotPassword />} />
 
       </Routes>
-      </BrowserRouter>
-      
-    </div>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
