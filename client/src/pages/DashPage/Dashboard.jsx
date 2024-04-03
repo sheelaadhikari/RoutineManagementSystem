@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../Components/Sidebar";
-import Header from "../../Components/Header";
+import Header from "../../Components/Header/Header";
 import Home from "../../Components/Home/Home";
 
 const Dashboard = () => {
@@ -15,9 +15,9 @@ const Dashboard = () => {
     <Header/>
     </div>
      <div className='flex'>  
-     <div className="sidebar">
+     {/* <div className="sidebar">
      <Sidebar />
-     </div>
+     </div> */}
      <div className="home mx-3 w-full" 
      >
      <Home />   

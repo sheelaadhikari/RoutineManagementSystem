@@ -1,0 +1,12 @@
+.bar:active, 
+.bar:hover, 
+.bar:focus
+ {
+  color: #7C83CC !important; 
+  outline: none;
+  border-bottom: 2px solid blue !important; /* Blue bottom border */
+}
+
+
+
+  
