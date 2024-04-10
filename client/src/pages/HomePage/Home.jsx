@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../Components/Sidebar";
 import Header from "../../Components/Header/Header";
-import Home from "../../Components/Home/Home";
+import Dashboard from "../../Components/Dashboard/Dashboard";
 
-const Dashboard = () => {
+const Home = () => {
 
 
  
@@ -20,7 +20,7 @@ const Dashboard = () => {
      </div> */}
      <div className="home mx-3 w-full" 
      >
-     <Home />   
+     <Dashboard/>
      </div>
      </div>
 
@@ -31,4 +31,4 @@ const Dashboard = () => {
 }
 //   
 
-export default Dashboard;
+export default Home;

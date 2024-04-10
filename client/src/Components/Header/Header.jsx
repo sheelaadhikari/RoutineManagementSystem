@@ -41,7 +41,7 @@ function Header() {
       <div className="p-6 flex justify-center items-center">
      <div className="menu flex space-x-12 mr-12 ">
      <div className="menuitem ">
-        <Link to='/dashboard' className="bar font-semibold" >HOME</Link>
+        <Link to='/home' className="bar font-semibold" >HOME</Link>
       </div>
       
       <div className="menuitem">
