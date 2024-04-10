@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import { AudioOutlined, SearchOutlined } from '@ant-design/icons';
 import { Input, Space, Button, Tooltip } from 'antd';
-import "./Home.css";
+import "./Dashboard.css";
 import TodaysClasses from "../TodaysClasses/TodaysClasses";
 import UpcomingClasses from "../UpcomingClasses/UpcomingClasses";
 import CurrentClasses from "../CurrentClasses/CurrentClasses";
 
-function Home() {
+function Dashboard() {
 
   const[classes,setClasses]=useState(<CurrentClasses/>);
 
@@ -58,4 +58,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Dashboard;

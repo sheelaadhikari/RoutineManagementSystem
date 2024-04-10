@@ -28,7 +28,7 @@ const Login = () => {
 
         localStorage.setItem("auth", JSON.stringify(res.data));
         axios.defaults.headers.common["Authorization"] = res.data.token;
-        navigate(location.state || "/dashboard ");
+        navigate(location.state || "/home ");
       } else {
         toast.error(res.data.message);
       }
@@ -76,14 +76,14 @@ const Login = () => {
                   className="w-5 absolute right-7 top-1 bg-transparent"
                 />
               </div>
-              <div className="btn space-y-7">
+              <div className="loginbtn space-y-7">
               <div className="forgot flex justify-end ">
                 <Link to='/forgot-password'>Forgot Password?</Link>
               </div>
                 <div className="flex justify-center">
                 <button
                 type="submit"
-                className="bg-custom-blue-300 text-black font-bold p-2 w-[82%] m-auto rounded-2xl"
+                className=" bg-custom-blue-300 text-black font-bold p-2 w-[82%] m-auto rounded-2xl"
               >
                 LOGIN
               </button>

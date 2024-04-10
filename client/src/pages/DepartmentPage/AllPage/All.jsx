@@ -1,13 +1,14 @@
 import React from 'react'
 import Header from '../../../Components/Header/Header'
-import Home from '../../../Components/Home/Home'
+import Dashboard from '../../../Components/Dashboard/Dashboard'
 
 const All = () => {
   return (
     <div>
         <Header/>
         {/* <div className="">All</div> */}
-        <Home/>
+        {/* <Home/> */}
+        <Dashboard/>
     </div>
   )
 }
