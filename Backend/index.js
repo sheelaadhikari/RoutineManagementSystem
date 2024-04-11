@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import color from "@colors/colors";
 import authRoutes from "./routes/authRoutes.js";
+import newuserRoutes from "./routes/newuserRoutes.js";
+
 import bcaRoutes from "./routes/bcaroutes/bcaRoutes.js";
 import morgan from "morgan";
 import cors from "cors";
@@ -30,6 +32,8 @@ app.use(morgan("dev"));
 // routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/bca", bcaRoutes);
+app.use("/api/v1/newuser", newuserRoutes);
+
 //rest api (testing)
 app.get("/", (req, res) => {
   res.send("<h1>welcome to this project</h1>");
