@@ -10,6 +10,7 @@ import Bbm from "./pages/DepartmentPage/BBMPage/Bbm";
 import Bbs from "./pages/DepartmentPage/BBSPage/Bbs";
 import All from "./pages/DepartmentPage/AllPage/All";
 import Home from "./pages/HomePage/Home";
+import Logout from "./Components/Logout/Logout";
 
 const App = () => {
   return (
@@ -25,6 +26,8 @@ const App = () => {
         <Route path="/bbm" element={<Bbm />} />
         <Route path="/bbs" element={<Bbs />} />
         <Route path="/all" element={<All />} />
+        <Route path="/logout" element={<Logout />} />
+
 
 
 

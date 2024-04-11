@@ -3,7 +3,7 @@ import { useState, useEffect, useContext, createContext } from "react";
 
 const AuthContext = createContext();
 
-const AuthProvider = (children) => {
+const AuthProvider = ({children}) => {
   const [auth, setAuth] = useState({
     user: null,
     token: "",
@@ -23,7 +23,7 @@ const AuthProvider = (children) => {
     } else {
       setAuth({ ...auth, isLoggedIn: false });
     }
-  }, [auth]);
+  }, []);
 
   return (
     <AuthContext.Provider value={[auth, setAuth]}>
