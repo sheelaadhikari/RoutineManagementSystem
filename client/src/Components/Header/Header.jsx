@@ -80,30 +80,15 @@ function Header() {
             <Link to='/home' className="bar font-semibold" >HOME</Link>
           </div>
 
-          {/* <div className="menuitem">
-            <Dropdown overlay={<Menu>{items.map(item => <Menu.Item key={item.key}>{item.label}</Menu.Item>)}</Menu>} placement="bottomLeft">
-              <Link className="bar font-semibold">
-                DEPARTMENT
-              </Link>
-            </Dropdown>
-          </div>
-        </div> */}
 
-        <div className="menuitem">
-            <Dropdown menu={{ items }} placement="bottomLeft">
+       <div className="menuitem">
+            <Dropdown menu={<Menu>{items.map(item => <Menu.Item key={item.key}>{item.label}</Menu.Item>)}</Menu>} placement="bottomLeft">
               <Link className="bar font-semibold">
                 DEPARTMENT
               </Link>
             </Dropdown>
           </div>
         </div>
-
-        {/* <Dropdown overlay={profile} placement="bottomRight">
-          <button className="border border-custom-blue-500 p-1 px-2 rounded-xl">
-            <span className="mr-5">John Doe</span>
-            <Avatar icon={<UserOutlined />} />
-          </button>
-        </Dropdown> */}
 
 <Dropdown overlay={<Menu>{profile.map(item => <Menu.Item key={item.key}>{item.label}</Menu.Item>)}</Menu>} placement="bottomRight" trigger={['click']}>
           <button className="border border-custom-blue-500 p-1 px-2 rounded-xl">
