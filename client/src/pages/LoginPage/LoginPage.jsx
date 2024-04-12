@@ -1,19 +1,30 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../LoginPage/LoginPage.css";
 import keyImage from "../../images/key.png"; // Adjust the path based on your directory structure
 import userImage from "../../images/user.png";
 import LockIcon from "@mui/icons-material/Lock";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auths";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+
+  const[auth,setAuth]=useAuth();
+  const {isLoggedIn}=auth;
+
+  useEffect(() => {
+  console.log("authloginpage", isLoggedIn);
+    if (isLoggedIn) {
+      navigate('/user/home');
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,10 +36,13 @@ const Login = () => {
       });
       if (res.data.success) {
         toast.success(res.data.message);
-
+        
         localStorage.setItem("auth", JSON.stringify(res.data));
         axios.defaults.headers.common["Authorization"] = res.data.token;
-        navigate(location.state || "/home ");
+        setAuth((prevAuth) => ({ ...prevAuth, isLoggedIn: true }));
+      
+        // navigate(location.state || "/home ");
+        navigate('/user/home');
       } else {
         toast.error(res.data.message);
       }
