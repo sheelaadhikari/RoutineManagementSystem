@@ -3,11 +3,24 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../Components/Sidebar";
 import Header from "../../Components/Header/Header";
 import Dashboard from "../../Components/Dashboard/Dashboard";
+import { readDepartment } from "../../store/slice/DepartmentSlice";
+import { useDispatch, useSelector } from 'react-redux'
 
 const Home = () => {
 
+const dispatch=useDispatch();
+const {department,loading}=useSelector((state)=>state.departmentapp);
 
- 
+useEffect(()=>{
+    dispatch(readDepartment());
+    console.log('department',department.singleroutine);
+},[]);
+
+if(loading){
+  return <p>Loading...</p>
+}
+
+
 
   return (
    <div className="w-screen ">
@@ -24,6 +37,9 @@ const Home = () => {
      </div>
      </div>
 
+     {department.singleroutine && department.singleroutine.periods.map((item, index) => (
+  <p key={index}>{item.subject}</p>
+))}
 
      
    </div>

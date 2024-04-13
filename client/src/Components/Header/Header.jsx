@@ -13,19 +13,19 @@ function Header() {
     {
       key: '1',
       label: (
-        <Link to='/bca'>BCA</Link>
+        <Link to='/user/bca'>BCA</Link>
       ),
     },
     {
       key: '2',
       label: (
-        <Link to='/bbm'>BBM</Link>
+        <Link to='/user/bbm'>BBM</Link>
       ),
     },
     {
       key: '3',
       label: (
-        <Link to='/bbs'>BBS</Link>
+        <Link to='/user/bbs'>BBS</Link>
       ),
     },
   ];
@@ -47,19 +47,19 @@ function Header() {
     {
       key: '1',
       label: (
-        <Link to='/1'>Profile</Link>
+        <Link to='/user/1'>Profile</Link>
       ),
     },
     {
       key: '2',
       label: (
-        <Link to='/2'>Account</Link>
+        <Link to='/user/2'>Account</Link>
       ),
     },
     {
       key: '3',
       label: (
-        <Link to='/logout'>Logout</Link>
+        <Link to='/user/logout'>Logout</Link>
       ),
     },
   ];

@@ -39,8 +39,8 @@ const Login = () => {
         
         localStorage.setItem("auth", JSON.stringify(res.data));
         axios.defaults.headers.common["Authorization"] = res.data.token;
-        setAuth((prevAuth) => ({ ...prevAuth, isLoggedIn: true }));
-      
+        setAuth((prevAuth) => ({ ...prevAuth, user: res.data.user, token: res.data.token, isLoggedIn: true }));
+        
         // navigate(location.state || "/home ");
         navigate('/user/home');
       } else {
