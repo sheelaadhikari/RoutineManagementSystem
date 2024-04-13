@@ -5,23 +5,37 @@ import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const AcceptInvitation = () => {
-  const [newpassword, setNewPassword] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+const searchString=window.location.search;
+const searchParams=new URLSearchParams(searchString);
+const token=searchParams.get("token");
+
 
     try {
       const res = await axios.post(
-        "http://localhost:8001/api/v1/auth/register",
+        "http://localhost:8001/api/v1/newuser/accept-invitation",
         {
-          newpassword,
-          confirmpassword,
+          newPassword,
+          confirmPassword,
+          token,
         }
       );
+console.log("data",res.data)
+if(res.data.success){
+  toast("Accepted Invitation",{success:true})
+  navigate("/");
+
+
+}
+
     } catch (error) {
       console.log(error);
       toast.error("something went wrong");
@@ -39,7 +53,7 @@ const AcceptInvitation = () => {
               <div className="inputbox relative">
                 <input
                   type="password"
-                  value={newpassword}
+                  value={newPassword}
                   onChange={(e) => {
                     setNewPassword(e.target.value);
                   }}
@@ -51,7 +65,7 @@ const AcceptInvitation = () => {
               <div className="inputbox relative">
                 <input
                   type="password"
-                  value={confirmpassword}
+                  value={confirmPassword}
                   onChange={(e) => {
                     setConfirmPassword(e.target.value);
                   }}

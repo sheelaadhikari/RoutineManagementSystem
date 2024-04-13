@@ -1,6 +1,7 @@
 import { json } from "express";
 import nodemailer from "nodemailer";
 import newuserModel from "../models/newuserModel.js";
+import userModel from "../models/userModel.js";
 import JWT from "jsonwebtoken";
 
 
@@ -12,7 +13,7 @@ export const newuserController = async (req, res) => {
       message: "email is required",
     });
   }
-  const existingUser = await newuserModel.findOne({ email: email });
+  const existingUser = await userModel.findOne({ email: email });
 
 
   const token = await JWT.sign({ email: email }, process.env.JWT_SECRET, {
@@ -34,14 +35,14 @@ export const newuserController = async (req, res) => {
     const savednewUser = await newusers.save();
     res.status(201).send({
       success: true,
-      message: "new user made  successfully",
+      message: "Invitation link is sent to the given email",
       users: savednewUser,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "failed to make new user",
+      message: "Failed to send email invite",
       error,
     });
   }

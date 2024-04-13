@@ -7,23 +7,23 @@ const UpcomingClasses = () => {
     const [routine, setRoutine] = useState([]);
       const [loading, setLoading] = useState(false);
     
-      useEffect(() => {
-        const fetchData = async () => {
-          try {
-            setLoading(true);
-            const res = await axios.get(
-              "http://localhost:8001/api/v1/bca/get-bcafroutine"
-            );
-            setRoutine(res.data);
-          } catch (error) {
-            console.log(error);
-          } finally {
-            setLoading(false);
-          }
-        };
+      // useEffect(() => {
+      //   const fetchData = async () => {
+      //     try {
+      //       setLoading(true);
+      //       const res = await axios.get(
+      //         "http://localhost:8001/api/v1/bca/get-bcafroutine"
+      //       );
+      //       setRoutine(res.data);
+      //     } catch (error) {
+      //       console.log(error);
+      //     } finally {
+      //       setLoading(false);
+      //     }
+      //   };
     
-        fetchData();
-      }, []);
+      //   fetchData();
+      // }, []);
     
       return (
        <div className="div ">

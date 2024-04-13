@@ -4,6 +4,6 @@ import { acceptinvitationController } from "../controllers/acceptinvitationContr
 const router= express.Router();
 
 router.post("/mail", newuserController)
-router.post("/acceptinvitation",acceptinvitationController)
+router.post("/accept-invitation",acceptinvitationController)
 export default router;
 // test

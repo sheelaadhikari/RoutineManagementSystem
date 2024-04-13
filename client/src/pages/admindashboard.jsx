@@ -11,9 +11,7 @@ const Admindashboard = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  useEffect(() => {
-    toast("hello admin")
-  }, []);
+  
 
 
 
