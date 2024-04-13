@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
         token: parseData.token,
         isLoggedIn: true,
       });
+      console.log("useeffect");
     }
   }, []);
 console.log("context", auth);
