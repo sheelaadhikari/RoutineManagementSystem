@@ -1,15 +1,32 @@
 import { json } from "express";
 import nodemailer from "nodemailer";
 import newuserModel from "../models/newuserModel.js";
+import JWT from "jsonwebtoken";
+
 
 export const newuserController = async (req, res) => {
-   var { email } = req.body;
-  try {
-   
-    if (!email) {
-      return res.send({ message: "Email is required" });
-    }
+  var { email } = req.body;
+  if (!email) {
+    return res.send({
+      success: false,
+      message: "email is required",
+    });
+  }
+  const existingUser = await newuserModel.findOne({ email: email });
 
+
+  const token = await JWT.sign({ email: email }, process.env.JWT_SECRET, {
+    expiresIn: "200d",
+  });  //exsiting  user
+  if (existingUser) {
+    return res.status(400).send({
+      source: false,
+      message: "this email is already registered",
+    });
+  }
+
+  try {
+  
     // Save user into the database
     const newusers = new newuserModel({
       email: email,
@@ -29,9 +46,7 @@ export const newuserController = async (req, res) => {
     });
   }
 
-  
-  async function sendMail(){
-
+  async function sendMail() {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -45,12 +60,11 @@ export const newuserController = async (req, res) => {
       to: email, // list of receivers
       subject: "rms", // Subject line
       text: "Routinemanagementsystem", // plain text body
-      html: "Routinemanagementsystem", // html body
+      html: ` press on this link to accept invitation http://localhost:5173/accept-invitation?token=${token}`, // html body
     };
 
     try {
       const result = await transporter.sendMail(mailOptions);
-
       console.log("email sent successfully");
     } catch (error) {
       console.log("email sent failed", error);
