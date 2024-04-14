@@ -5,7 +5,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import {toast}from "react-toastify"
-import { Typography } from "antd";
+import { Button, Typography } from "antd";
 
 const Admindashboard = () => {
   const [email, setEmail] = useState("");
@@ -28,12 +28,6 @@ const Admindashboard = () => {
       );
       if (res.data.success) {
         toast(res.data.message);
-
-        localStorage.setItem("auth", JSON.stringify(res.data));
-        axios.defaults.headers.common["Authorization"] = res.data.token;
-        navigate(location.state || "/accept-invitation");
-      } else {
-        toast("email already invited");
       }
     } catch (error) {
       console.log(error);
@@ -52,7 +46,7 @@ const Admindashboard = () => {
             >
               <div className="inputbox relative">
                 <input
-                  type="text"
+                  type="email"
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
@@ -63,14 +57,17 @@ const Admindashboard = () => {
                 <span className="absolute left-0 px-2">Email</span>
               </div>
 
-              <div className="btn space-y-7">
+              <div className="space-y-7">
                 <div className="flex justify-center">
-                  <button
+               
+                <button
                     type="submit"
+                    disabled={!email}
                     className="bg-custom-blue-300 text-black font-bold p-2 w-[82%] m-auto rounded-2xl"
                   >
                     Invite Admin
                   </button>
+                
                 </div>
               </div>
             </form>
