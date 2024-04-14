@@ -70,7 +70,7 @@ export const readDepartment=createAsyncThunk('readDepartment',async(data,rejectW
             })
             .addCase(readDepartment.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.payload.message;
+                state.error = action.payload?.message;
             })
             // .addCase(deleteDepartment.pending, (state) => {
             //     state.loading = true;

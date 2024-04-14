@@ -62,6 +62,12 @@ function Header() {
         <Link to='/user/logout'>Logout</Link>
       ),
     },
+    {
+      key: '4',
+      label: (
+        <Link to='/user/super-dashboard'>Super Admin Dashboard</Link>
+      ),
+    },
   ];
   
 

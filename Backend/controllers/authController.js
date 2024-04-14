@@ -4,28 +4,28 @@ import JWT from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
   try {
-    const username = req.body.username;
+    // const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
-    const phone = req.body.phone;
-    const pincode = req.body.pincode;
+    // const phone = req.body.phone;
+    // const pincode = req.body.pincode;
 
     //validation
-    if (!username) {
-      return res.send({ message: "Name is required" });
-    }
+    // if (!username) {
+    //   return res.send({ message: "Name is required" });
+    // }
     if (!email) {
       return res.send({ message: "Email is required" });
     }
     if (!password) {
       return res.send({ message: "Password is required" });
     }
-    if (!phone) {
-      return res.send({ message: "Phone Number is required" });
-    }
-    if (!pincode) {
-      return res.send({ message: "Pincode Number is required" });
-    }
+    // if (!phone) {
+    //   return res.send({ message: "Phone Number is required" });
+    // }
+    // if (!pincode) {
+    //   return res.send({ message: "Pincode Number is required" });
+    // }
 
     //check user
 
@@ -44,11 +44,11 @@ export const registerController = async (req, res) => {
 
     // Save user into the database
     const users = new userModel({
-      username: username,
+      // username: username,
       email: email,
       password: hashedPassword,
-      phone: phone,
-      pincode: pincode,
+      // phone: phone,
+      // pincode: pincode,
     });
     const savedUser = await users.save();
     res.status(201).send({
@@ -103,11 +103,11 @@ export const loginController = async (req, res) => {
       success: true,
       message: "login successfull",
       user: {
-        username: user.username,
+        // username: user.username,
         email: user.email,
         phone: user.phone,
-        role: user.role,
-        pincode: user.pincode,
+        // role: user.role,
+        // pincode: user.pincode,
       },
       token,
     });
@@ -167,3 +167,28 @@ export const forgotPasswordController = async (req, res) => {
     });
   }
 };
+
+// CRUD application of admin 
+export const getAllMembersController=async(req,res)=>{
+  
+    try {
+        const allMembers = await userModel
+          .find({})
+          .populate("_id")
+          .sort({ createdAt: -1 });
+        res.status(200).send({
+          countTotal: allMembers.length,
+          success: true,
+          message: "all registered members",
+          allMembers,
+        });
+      } catch (error) {
+        console.log(error);
+        res.status(500).send({
+          success: false,
+          message: "error in getting  all registered members",
+          error: error.message,
+        });
+      }
+    };
+  
