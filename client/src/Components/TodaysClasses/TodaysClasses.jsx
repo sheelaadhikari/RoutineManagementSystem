@@ -55,7 +55,7 @@ const TodaysClasses = () => {
         </tbody>
 
       </table>
-
+          List of todays classes
 
     </div>
   );

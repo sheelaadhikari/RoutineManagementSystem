@@ -1,13 +1,12 @@
-/* eslint-disable react-refresh/only-export-components */
-import { useState, useEffect, useContext, createContext } from "react";
+import React, { useState, useEffect, useContext } from 'react';
 
-const AuthContext = createContext();
+const AuthContext = React.createContext();
 
-const AuthProvider = (children) => {
+const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     user: null,
     token: "",
-    isLoggedIn: undefined,
+    isLoggedIn: false,
   });
 
   useEffect(() => {
@@ -20,10 +19,10 @@ const AuthProvider = (children) => {
         token: parseData.token,
         isLoggedIn: true,
       });
-    } else {
-      setAuth({ ...auth, isLoggedIn: false });
+      console.log("useeffect");
     }
-  }, [auth]);
+  }, []);
+console.log("context", auth);
 
   return (
     <AuthContext.Provider value={[auth, setAuth]}>
@@ -32,6 +31,5 @@ const AuthProvider = (children) => {
   );
 };
 
-//context hook
 const useAuth = () => useContext(AuthContext);
 export { useAuth, AuthProvider };

@@ -167,3 +167,28 @@ export const forgotPasswordController = async (req, res) => {
     });
   }
 };
+
+// CRUD application of admin 
+export const getAllMembersController=async(req,res)=>{
+  
+    try {
+        const allMembers = await userModel
+          .find({})
+          .populate("_id")
+          .sort({ createdAt: -1 });
+        res.status(200).send({
+          countTotal: allMembers.length,
+          success: true,
+          message: "all registered members",
+          allMembers,
+        });
+      } catch (error) {
+        console.log(error);
+        res.status(500).send({
+          success: false,
+          message: "error in getting  all registered members",
+          error: error.message,
+        });
+      }
+    };
+  
