@@ -5,7 +5,7 @@ const Tables = ({data,columns}) => {
   return (
     <div>
        
-         <Table dataSource={data} columns={columns}/>;
+         <Table dataSource={data} columns={columns}/>
 
     
     </div>

@@ -8,18 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const Home = () => {
 
-const dispatch=useDispatch();
-const {department,loading}=useSelector((state)=>state.departmentapp);
-
-useEffect(()=>{
-    dispatch(readDepartment());
-    console.log('department',department.singleroutine);
-},[]);
-
-if(loading){
-  return <p>Loading...</p>
-}
-
 
 
   return (
@@ -37,9 +25,7 @@ if(loading){
      </div>
      </div>
 
-     {department.singleroutine && department.singleroutine.periods.map((item, index) => (
-  <p key={index}>{item.subject}</p>
-))}
+    
 
      
    </div>

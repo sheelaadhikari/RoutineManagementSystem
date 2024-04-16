@@ -43,7 +43,7 @@ const UpcomingClasses = () => {
               </tr>
             </thead>
             <tbody>
-              {routine.map((item) => (
+              {/* {routine.map((item) => (
                 item.periods.map((period) => (
                   <tr key={period._id}>
                   
@@ -56,7 +56,7 @@ const UpcomingClasses = () => {
                     <td>{period.teacher}</td>
                   </tr>
                 ))
-              ))}
+              ))} */}
             </tbody>
           </table>
         </div>

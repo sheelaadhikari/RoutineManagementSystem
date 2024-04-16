@@ -41,7 +41,7 @@ const TodaysClasses = () => {
           </tr>
         </thead>
         <tbody>
-          {routine.singleroutine && routine.singleroutine.periods && routine.singleroutine.periods.map((period) => (
+          {/* {routine.singleroutine && routine.singleroutine.periods && routine.singleroutine.periods.map((period) => (
             <tr key={period._id}>
               <td>{routine.programname} BCA</td>
               <td>{routine.semester} 1</td>
@@ -51,7 +51,7 @@ const TodaysClasses = () => {
               <td>{period.subject}</td>
               <td>{period.teacher}</td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
 
       </table>

@@ -6,24 +6,24 @@ const CurrentClasses = () => {
   const [routine, setRoutine] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const res = await axios.get(
-          "http://localhost:8001/api/v1/bca/get-singledr/Wednesday"
-        );
-        setRoutine(res.data);
-        console.log("the data is ", res.data)// Assuming the response is the entire object
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const res = await axios.get(
+  //         "http://localhost:8001/api/v1/bca/get-singledr/Wednesday"
+  //       );
+  //       setRoutine(res.data);
+  //       console.log("the data is ", res.data)// Assuming the response is the entire object
+  //     } catch (error) {
+  //       console.log(error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <div className='table-one'>
@@ -41,7 +41,7 @@ const CurrentClasses = () => {
           </tr>
         </thead>
         <tbody>
-          {routine.singleroutine && routine.singleroutine.periods && routine.singleroutine.periods.map((period) => (
+          {/* {routine.singleroutine && routine.singleroutine.periods && routine.singleroutine.periods.map((period) => (
             <tr key={period._id}>
               <td>{routine.programname} BCA</td>
               <td>{routine.semester} 1</td>
@@ -51,7 +51,7 @@ const CurrentClasses = () => {
               <td>{period.subject}</td>
               <td>{period.teacher}</td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
 
       </table>
