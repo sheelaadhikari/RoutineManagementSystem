@@ -22,6 +22,8 @@ import Logout from "./Components/Logout/Logout";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import { useAuth } from "./context/auths";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import Department from "./pages/DepartmentPage/Department";
+import ManageDepartment from "./pages/ManageDepartment/ManageDepartment";
 
 const App = () => {
   const [auth] = useAuth();
@@ -51,6 +53,8 @@ const App = () => {
             <Route path="bca" element={<Bca />} />
             <Route path="bbs" element={<Bbs />} />
             <Route path="all" element={<All />} />
+            <Route path="department/:departmentname" element={<Department />} />
+            <Route path="managedepartment" element={<ManageDepartment />} />
             <Route path="super-dashboard" element={<Admindashboard />} />
             <Route path="logout" element={<Logout />} />
           </Route>
