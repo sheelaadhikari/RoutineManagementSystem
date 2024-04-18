@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { createDepartment, readSingleDepartment } from "../../store/slice/DepartmentSlice";
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +15,7 @@ const {alldepartment,singledepartment}=department;
     useEffect(() => {
         dispatch(readSingleDepartment(departmentname));
         console.log('singledepartment',singledepartment);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [departmentname]);
 
     if (loading) {
