@@ -5,6 +5,7 @@ import { hashPassword } from "../helpers/authHelper.js";
 export const acceptinvitationController = async (req, res) => {
 
   try {
+    const username=req.body.username;
     const newPassword = req.body.newPassword;
     const confirmPassword = req.body.confirmPassword;
     const token = req.body.token;
@@ -15,6 +16,8 @@ export const acceptinvitationController = async (req, res) => {
 
     const email = decodedToken.email;
     console.log("the email is", email);
+    if(!username)
+    return res.send("username is required")
     if (!newPassword) {
       return res.send("new password is required");
     }
@@ -44,7 +47,7 @@ export const acceptinvitationController = async (req, res) => {
 
     // Save user into the database
     const users = new userModel({
-      // username: username,
+      username: username,
       email: email,
       password: hashedPassword,
       // phone: phone,
