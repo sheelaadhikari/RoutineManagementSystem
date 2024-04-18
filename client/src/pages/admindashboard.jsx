@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import {toast}from "react-toastify"
+import { toast } from "react-toastify";
 import { Button, Typography } from "antd";
 
 const Admindashboard = () => {
@@ -12,9 +12,6 @@ const Admindashboard = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,16 +25,18 @@ const Admindashboard = () => {
       );
       if (res.data.success) {
         toast(res.data.message);
-      }
+      } 
     } catch (error) {
       console.log(error);
-      toast("something went wrong");
+      toast("something went wrong or email already registerd");
     }
   };
   return (
     <div className="login w-full md:w-screen h-screen flex items-center justify-center bg-custom-blue-400 ">
       <div className="wrapper flex flex-col md:flex-row rounded-xl border border-blue-700 w-full md:w-[80%] lg:w-[60%] xl:w-[50%] mx-4 md:mx-0">
-        <Typography className = " h1 m-4 bold" title="h1"  >Invite new admin</Typography>
+        <Typography className=" h1 m-4 bold" title="h1">
+          Invite new admin
+        </Typography>
         <div className="left m-6 mb-14 p-4 md:w-2/3">
           <div className="form">
             <form
@@ -59,15 +58,13 @@ const Admindashboard = () => {
 
               <div className="space-y-7">
                 <div className="flex justify-center">
-               
-                <button
+                  <button
                     type="submit"
                     disabled={!email}
                     className="bg-custom-blue-300 text-black font-bold p-2 w-[82%] m-auto rounded-2xl"
                   >
                     Invite Admin
                   </button>
-                
                 </div>
               </div>
             </form>

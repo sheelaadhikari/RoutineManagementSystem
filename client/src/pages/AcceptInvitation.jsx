@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const AcceptInvitation = () => {
+  const [username, setUsername] = useState("");
+
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -23,6 +25,7 @@ const token=searchParams.get("token");
       const res = await axios.post(
         "http://localhost:8001/api/v1/newuser/accept-invitation",
         {
+          username,
           newPassword,
           confirmPassword,
           token,
@@ -50,6 +53,18 @@ if(res.data.success){
               onSubmit={handleSubmit}
               className="flex flex-col mt-4 space-y-14 font-bold relative text-xs md:text-base"
             >
+             <div className="inputbox relative">
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                  }}
+                  className="p-1 border-b border-blue-700 w-full focus:border-blue-700 outline-none"
+                  placeholder=""
+                />
+                <span className="absolute left-0 py-4 px-2">Username</span>
+              </div>
               <div className="inputbox relative">
                 <input
                   type="password"

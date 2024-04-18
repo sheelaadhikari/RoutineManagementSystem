@@ -4,16 +4,16 @@ import JWT from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
   try {
-    // const username = req.body.username;
+    const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
     // const phone = req.body.phone;
     // const pincode = req.body.pincode;
 
-    //validation
-    // if (!username) {
-    //   return res.send({ message: "Name is required" });
-    // }
+  // validation
+    if (!username) {
+      return res.send({ message: "Name is required" });
+    }
     if (!email) {
       return res.send({ message: "Email is required" });
     }
@@ -44,7 +44,7 @@ export const registerController = async (req, res) => {
 
     // Save user into the database
     const users = new userModel({
-      // username: username,
+      username: username,
       email: email,
       password: hashedPassword,
       // phone: phone,
@@ -103,7 +103,7 @@ export const loginController = async (req, res) => {
       success: true,
       message: "login successfull",
       user: {
-        // username: user.username,
+        username: user.username,
         email: user.email,
         phone: user.phone,
         // role: user.role,
@@ -191,4 +191,87 @@ export const getAllMembersController=async(req,res)=>{
         });
       }
     };
+  // get single admin
+  export const getSingleAdminController=async(req,res)=>{
+    try {
+        const singleAdmin = await userModel
+          .findOne({ username:req.params.username })
+          .populate("_id");
+        if (singleAdmin) {
+          res.status(200).send({
+            success: true,
+            message: " single admin fetched",
+           singleAdmin,
+          });
+        } else {
+          res.status(404).send({
+            success: false,
+            message: "The admin is not available",
+           singleAdmin,
+          });
+        }
+      } catch (error) {
+        console.log(error);
+        res.status(500).send({
+          success: false,
+          message: "error while getting single admin",
+          error,
+        });
+      }
+    };
+    // delete admin
+    export const deleteMemberController=async(req,res)=>{
+      try {
+          const member = await userModel.findByIdAndDelete(req.params.id).select("username");
+      
+          if (!member) {
+            return res.status(404).send({
+              success: false,
+              message: "The admin is not found",
+            });
+          }
+          
+          res.status(200).send({
+            success: true,
+            message: "Deleted admin successfully",
+            member,
+          });
+        } catch (error) {
+          console.log(error);
+          res.status(500).send({
+            success: false,
+            message: "Error while deleting the admin",
+            error,
+          });}}
+  // update admin
+  export const updateMemberController = async (req, res) => {
+    console.log("hello")
+    try {
+      const { username} = req.body;
+      //validation
+        if(!username){
+          return res.status(400).send({ error: "Name is Required" });
+        }
+       
   
+      const member = await userModel.findByIdAndUpdate(
+        req.params.id,
+        {
+          ...req.body,
+        },
+        { new: true }
+      );
+           res.status(200).send({
+        success: true,
+        message: "Admin updated successfully",
+        member,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        message: "something went worng",
+        error,
+      });
+    }
+  };
