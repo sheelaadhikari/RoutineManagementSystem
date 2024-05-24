@@ -26,7 +26,7 @@ useEffect(()=>{
 
 
 if(loading){
-  return <p>Loading...</p>
+  return <p>Loading....</p>
 }
 
   const profile = [
