@@ -75,8 +75,8 @@ const CurrentClasses = () => {
 
   return (
     <div>
-      <div style={{ position: "relative" }}>
-        <div style = {{position: 'absolute'}}>
+      <div className="relative">
+        <div className="border border-black">
           {periods.periods.map((item) => {
             const startTimeString = new Date(item.startTime)
               .toTimeString()
@@ -101,7 +101,7 @@ const CurrentClasses = () => {
             const backgroundColor = faculties[item.faculty].color;
 
             return (
-              <div
+              <div className=""
                 style={{
                   padding: "4px",
                   backgroundColor: isClassActive
